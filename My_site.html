@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Boysun_Surkhandarya.JPG" alt="Boysun Background" height="900" width="1200">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOYSUN | Insoniyat Merosi</title>
+    
+    <!-- Premium Typography -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cloudflare.com"></script>
+    <script src="https://cloudflare.com"></script>
+    <script src="https://cloudflare.com"></script>
+
+    <style>
+        :root { --gold: #d4af37; --bg: #050505; --text: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Outfit', sans-serif; 
+            overflow-x: hidden; 
+        }
+
+        /* 1. WebGL Background Layer */
+        #hero-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: -1; filter: blur(12px) brightness(0.4);
+        }
+
+        /* 2. Advanced Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 40px 60px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+        }
+        .logo { font-family: 'Syncopate'; font-weight: 700; font-size: 1.2rem; letter-spacing: 4px; }
+        .nav-links a { 
+            color: white; text-decoration: none; margin-left: 40px; 
+            font-family: 'Syncopate'; font-size: 0.65rem; letter-spacing: 2px;
+            opacity: 0.6; transition: 0.4s;
+        }
+        .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+        /* 3. Hero Section */
+        section { min-height: 100vh; padding: 100px 8%; display: flex; align-items: center; }
+        .hero { justify-content: center; text-align: center; }
+        .hero h1 { 
+            font-family: 'Syncopate'; font-size: clamp(3rem, 12vw, 10rem); 
+            line-height: 0.85; text-transform: uppercase; 
+        }
+
+        /* 4. Content Sections */
+        .content-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+        }
+        .text-box h2 { font-family: 'Syncopate'; font-size: 2.5rem; color: var(--gold); margin-bottom: 25px; }
+        .text-box p { font-size: 1.15rem; line-height: 1.8; color: #aaa; text-align: justify; }
+
+        /* 5. Ultra Photo Gallery (Mosaic) */
+        .gallery-wrap { padding: 100px 5%; background: #080808; }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 250px; gap: 15px;
+        }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 8px; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 1.2s cubic-bezier(0.2, 1, 0.3, 1); }
+        .gallery-item:hover img { transform: scale(1.15); filter: contrast(1.1); }
+        
+        /* Grid spans for mosaic effect */
+        .w-2 { grid-column: span 2; }
+        .h-2 { grid-row: span 2; }
+
+        .img-caption {
+            position: absolute; bottom: 20px; left: 20px;
+            font-family: 'Syncopate'; font-size: 0.6rem; letter-spacing: 2px;
+            background: rgba(0,0,0,0.6); padding: 5px 10px; opacity: 0; transition: 0.5s;
+        }
+        .gallery-item:hover .img-caption { opacity: 1; transform: translateY(-5px); }
+
+        footer { padding: 60px; text-align: center; font-family: 'Syncopate'; font-size: 0.7rem; border-top: 1px solid #222; opacity: 0.4; }
+    </style>
+</head>
+<body>
+
+    <canvas id="hero-canvas"></canvas>
+
+    <nav>
+        <div class="logo">BOYSUN TURIZM </div>
+        <div class="nav-links">
+            <a href="#about">Meros</a>
+            <a href="#nature">Tabiat</a>
+            <a href="#gallery">Galereya</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div>
+            <h1 id="main-title">BOYSUN</h1>
+            <p style="letter-spacing: 12px; margin-top: 30px; font-weight: 300; color: var(--gold);">OPEN AIR MUSEUM</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="content-grid">
+            <div class="text-box">
+                <h2>UNESCO Merosi</h2>
+                <p>Boysun tumani o‘zining qadimiy an’analari, folklor san’ati va noyob turmush tarzi bilan dunyoni hayratga solib keladi. 2001-yilda UNESCO tomonidan "Insoniyatning og'zaki va nomoddiy madaniy merosi durdonasi" deb e'tirof etilgan ushbu hududda ming yillik sivilizatsiya sirlari yashirin.</p>
+            </div>
+            <div style="position: relative;">
+                <img src="https://novotours.uz/wp-content/uploads/2017/04/bay1b.jpg" style="width: 100%; border-radius: 15px; filter: sepia(0.3);" alt="Boysun">
+            </div>
+        </div>
+    </section>
+           <br>
+            <div class="text-box">
+                <h2>Geografiyasi va Tabiat</h2>
+                <p>oylashuvi: Surxondaryo viloyatining shimoli-g‘arbiy qismida, Hisor tog‘ tizmasining tarmoqlari bo‘lgan Boysuntog‘ etaklarida joylashgan.
+Iqlimi va Manzarasi: Baland tog‘lar, chuqur daralar va yashil vodiylar Boysunning o‘ziga xos manzarasini belgilaydi. Bu yerda mashhur Darband darasi va shifobaxsh Omonxona bulog‘i joylashgan. 
+🏛 Madaniy meros (YUNESKO)
+Insoniyat durdonasi: Boysun tumanining madaniy muhiti 2001-yilda YUNESKO tomonidan "Insoniyatning og‘zaki va nomoddiy merosi durdonasi" deb e'tirof etilgan.
+An'analar: Hududda qadimiy marosimlar, xalq og‘zaki ijodi (ayniqsa "Alpomish" dostoni bilan bog‘liq joylar) va milliy hunarmandchilik turlari (do‘ppiduzlik, kashtachilik) hanuzgacha asrab kelinadi.</p>
+
+
+    <!-- Professional Gallery Section -->
+    <section id="gallery" class="gallery-wrap" style="display: block;">
+        <h2 style="font-family: 'Syncopate'; margin-bottom: 50px; text-align: center; letter-spacing: 10px;">VIZUAL EKSPEDITSIYA</h2>
+        
+        <div class="gallery-grid">
+            <!-- 1. Kanyon -->
+            <div class="gallery-item w-2 h-2">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgJ01DCp0Muv3xHC3n5W5CmbGtmoZJUEmnAQ&s" alt="Boysun Nature">
+                <div class="img-caption">Qizil Kanyon sirlari</div>
+            </div>
+            <!-- 2. Tog'lar -->
+            <div class="gallery-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTybyPIZh5mqru5XL4sYixMRijF9UOJSQ4T2Q&s" alt="Mountains">
+                <div class="img-caption">Xo'ja G'ur-G'ur Ota</div>
+            </div>
+            <!-- 3. Madaniyat -->
+            <div class="gallery-item h-2">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSggQaUqEbqJRhD-3TO8Kye0XAkcJZFMcm4dQ&s" alt="Culture">
+                <div class="img-caption">Folklor sadosi</div>
+            </div>
+            <!-- 4. Qishloq manzarasi -->
+            <div class="gallery-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPRjpHRzhGKiSgKpaWvEVg4omDSzy3shsvEw&s" alt="Village">
+                <div class="img-caption">Padang adirlari</div>
+            </div>
+            <!-- 5. Hunarmandchilik -->
+            <div class="gallery-item w-2">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEpMyJEtLCsohPO5HVMgRr08keedn2FcKm5Q&s  " alt="Crafts">
+                <div class="img-caption">Milliy kashtachilik</div>
+            </div>
+            <!-- 6. Omonxona -->
+            <div class="gallery-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGYw0494rU85oa5OXz5xaXcABR2fhHTG-8uQ&s" alt="Healing">
+                <div class="img-caption">Omonxona shifobaxsh suvi</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>&copy; 2024 BOYSUN TOURISM AUTHORITY. ALL RIGHTS RESERVED.</footer>
+
+    <script>
+        // 1. Three.js Liquid Background Effect
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const loader = new THREE.TextureLoader();
+        const texture = loader.load('https://gstatic.com');
+        
+        const geometry = new THREE.PlaneGeometry(16, 9, 64, 64);
+        const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+        const plane = new THREE.Mesh(geometry, material);
+        scene.add(plane);
+        camera.position.z = 5;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = performance.now() * 0.001;
+            plane.geometry.vertices.forEach(v => {
+                v.z = Math.sin(v.x * 0.5 + time) * 0.3;
+            });
+            plane.geometry.verticesNeedUpdate = true;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // 2. GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Title Mouse Parallax
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 60;
+            const y = (e.clientY / window.innerHeight - 0.5) * 60;
+            gsap.to("#main-title", { x: x, y: y, rotationY: x/10, duration: 1.2, ease: "power2.out" });
+        });
+
+        // Gallery Scroll Reveal
+        gsap.utils.toArray('.gallery-item').forEach((item, i) => {
+            gsap.from(item, {
+                scrollTrigger: { trigger: item, start: "top 90%" },
+                y: 100,
+                opacity: 0,
+                duration: 1,
+                delay: i * 0.1,
+                ease: "power3.out"
+            });
+        });
+    </script>
+    <section id="about">
+        <div class="content-grid">
+            <div class="text-box">
+                <h2>Boysun tarixi</h2>
+                <p>Boysun Surxondaryo viloyatidagi eng qadimiy aholi manzillaridan. Boysunning shimoli-g'arbida Teshiktosh g'ori joylashgan. Boysunda miloddan avvalgi taxminan 5-ming yillik oxirida aholi yashaganligi ma'lum. Miloddan avvalgi 1-asrdan - milodiy 1-asrgacha Boysun oʻrnida Poikalon nomli mustahkam qalʼashahar mavjud boʻlgan. Milodiy 6—13-asri boshlarida Boysun o'rnida Chagʻoniyon shaharlaridan biri – Bosand joylashgan. Abu Isʼhoq Istahriyning „Kitob masolik va almamolik“ („Mamlakatlar yoʻllari toʻgʻrisida kitob“)ida ham Bosand deb taʼriflangan. "Hudud ulolam"da Bosand koʻp sonli va jangovar aholili mustahkam joydir, deyilgan..</p>
+            </div>
+            <div style="position: relative;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Uzbekistan_location_map.svg/330px-Uzbekistan_location_map.svg.png" style="width: 100%; border-radius: 15px; filter: sepia(0.3);" alt="Boysun">
+                <div class="content-grid">
+</body style= "background-image: url(https://leto.uz/upload/iblock/f39/f3998898be8741b42a212085472fb2ce.jpg) " >
+BOYSUN.UNLIMITED
+
+</html>
